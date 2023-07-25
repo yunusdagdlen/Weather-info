@@ -1,0 +1,67 @@
+<html>
+<head>
+  <title>Golang Mysql Curd Example</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" href="/static/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/formalize.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+</head>
+<body>
+<h1>Selam</h1>
+
+
+
+<a href="/" onclick="esc()">HOME</a>
+<a href="/new">NEW</a>
+
+<center><h1>Bacic CRUD project</h1></center>
+<center>
+  <table class="Main-table">
+    <thead class="Main-table-header">
+    <tr>
+      <td>ID</td>
+      <td>Name</td>
+      <td>City</td>
+      <td>View</td>
+      <td>Edit</td>
+      <td>Delete</td>
+    </tr>
+    </thead>
+    <tbody>
+    {{ range . }}
+      <tr class="Main-table-column">
+        <td>{{ .Id }}</td>
+        <td> {{ .Name }} </td>
+        <td>{{ .City }} </td>
+        <td>{{ .Weather }}</td>
+        <td><a href="/show?id={{ .Id }}">View</a></td>
+        <td><a href="/edit?id={{ .Id }}">Edit</a></td>
+        <td><a href="/delete?id={{ .Id }}">Delete</a><td>
+
+      </tr>
+    {{ end }}
+    </tbody>
+  </table>
+</center>
+
+
+<div class="Coontainer">
+  {{range .}}
+    <ul>
+      <li>{{.Id}}</li>
+      <li>{{.Name}}</li>
+      <li>{{.City}}</li>
+      <li><a href="/show?id={{ .Id }}">View</a></li>
+      <li><a href="/show?id={{ .Id }}">Edit</a></li>
+      <li><a href="/show?id={{ .Id }}">Delete</a></li>
+    </ul>
+    <hr>
+  {{end}}
+</div>
+
+<script src="../static/js/script.js"></script>
+</body>
+</html>
+
+
+

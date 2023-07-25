@@ -1,0 +1,29 @@
+.body{
+background: pink;
+}
+h1{
+    color: pink;
+}
+.Main-table{
+    margin-top: 150px;
+    border-collapse: collapse;
+    border: 1px;
+}
+
+.Main-table-header{
+    border: 1px solid black;
+}
+.Main-table-column{
+    border-left: 1px solid black;
+}
+
+.Main-table-column td:first-child{
+    border: none;
+}
+
+.Coontainer ul{
+    display: inline;
+    text-decoration: none;
+    color: pink;
+
+}

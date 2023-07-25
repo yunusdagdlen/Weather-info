@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+<!--    <link rel="stylesheet" type="text/css" href="/static/css/normalize.css">-->
+<!--    <link rel="stylesheet" type="text/css" href="/static/css/formalize.css">-->
+<!--    <link rel="stylesheet" type="text/css" href="/static/css/style.css">-->
+
+
+    <style>
+        .Main-table {
+            margin-top: 3%;
+            border-collapse: collapse;
+            border: 1px;
+        }
+
+        .Main-table-header {
+            border: 1px solid black;
+        }
+
+        .Main-table-column td {
+            border-left: 1px solid black;
+            border-top: 1px solid black;
+        }
+
+        .Main-table-column td:first-child {
+            border-left: none;
+        }
+
+        .Main-table-column td:last-child {
+            border-bottom: 1px solid black;
+        }
+
+        .Coontainer ul li {
+            display: inline-flex;
+        }
+
+        .Coontainer ul li a {
+            width: 80px;
+            height: 40px;
+            border: 1px solid black;
+            background-color: pink;
+            cursor: pointer;
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body id="body">
+
+
+<center><h1>Basic CRUD project</h1></center>
+<center>
+    <a href=" /" onclick="esc()">HOME</a>
+    <a href="/new">NEW</a>
+
+    <table class="Main-table">
+        <thead class="Main-table-header">
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>City</td>
+            <td>Weather</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+        </thead>
+        <tbody>
+        {{ range . }}
+        <tr class="Main-table-column">
+            <td>{{ .Id }}</td>
+            <td> {{ .Name }}</td>
+            <td>{{ .City }}</td>
+            <td>{{ .Weather }}</td>
+            <td>
+                <form action="/edit?id={{ .Id }}" method="post" class="submit-form">
+                    <input type="submit" value="Edit" class="submit-button">
+                </form>
+            </td>
+            <td>
+                <form action="/delete?id={{ .Id }}" method="post" class="submit-form">
+                    <input type="submit" value="Delete" class="submit-button">
+                </form>
+            <td>
+        </tr>
+        {{end}}
+        </tbody>
+    </table>
+</center>
+<center>
+    <form action="#" method="get">
+        <input type="text" name="query" id="cityInp">
+        <button id="sendButton" onclick=GetCity() >Send</button>
+    </form>
+</center>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    function GetCity() {
+        $.ajax({
+            url: 'http://localhost:8080/weather',
+            data: {
+                'city': document.getElementById("cityInp").value
+            },
+            dataType: 'json',
+            success: function (data) {
+                alert("data:"+data)
+
+            },
+            error: function (request, error) {
+                alert("Request: " + JSON.stringify(request));
+            }
+        });
+
+    }
+
+
+</script>
+
+</body>
+</html>
